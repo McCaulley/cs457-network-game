@@ -15,37 +15,57 @@ The server runs one game room. This FSM describes that room. The server is the o
 stateDiagram-v2
     [*] --> INIT
 
-    INIT --> WAITING_FOR_PLAYERS : socket bound to 0.0.0.0 and listening
-    INIT --> [*] : bind fails, log error and exit
+    INIT --> WAITING_FOR_PLAYERS : listening
+    INIT --> [*] : bind fails
 
     state WAITING_FOR_PLAYERS {
         [*] --> LOBBY_EMPTY
-        LOBBY_EMPTY --> LOBBY_ONE : valid CONNECT, assign PLAYER_1, send LOBBY_WAIT
-        LOBBY_EMPTY --> LOBBY_EMPTY : bad alias or malformed, send ERROR
-        LOBBY_ONE --> LOBBY_EMPTY : PLAYER_1 sends DISCONNECT or EOF or RST
-        LOBBY_ONE --> LOBBY_ONE : MOVE or bad CONNECT, send ERROR
-        LOBBY_ONE --> [*] : valid CONNECT, assign PLAYER_2
+        LOBBY_EMPTY --> LOBBY_ONE : CONNECT, assign P1
+        LOBBY_ONE --> LOBBY_EMPTY : P1 leaves
+        LOBBY_ONE --> LOBBY_ONE : bad msg, ERROR
+        LOBBY_ONE --> [*] : CONNECT, assign P2
     }
 
-    WAITING_FOR_PLAYERS --> GAME_START : 2 players joined
+    WAITING_FOR_PLAYERS --> GAME_START : 2 players
+    GAME_START --> PLAYER_TURN : P1 goes first
 
-    GAME_START --> PLAYER_TURN : reset scores, active is PLAYER_1, send GAME_START and STATE_UPDATE
-
-    PLAYER_TURN --> PLAYER_TURN : out of turn MOVE or malformed message, send ERROR to sender only
+    PLAYER_TURN --> PLAYER_TURN : out of turn, ERROR
     PLAYER_TURN --> EVALUATE_MOVE : MOVE from active player
-    PLAYER_TURN --> GAME_OVER : DISCONNECT or EOF or RST, opponent wins by FORFEIT
+    PLAYER_TURN --> GAME_OVER : disconnect, FORFEIT
 
-    EVALUATE_MOVE --> PLAYER_TURN : invalid action or HOLD with zero total, send ERROR
-    EVALUATE_MOVE --> PLAYER_TURN : ROLL of 2 to 6, add to turn total, broadcast STATE_UPDATE
-    EVALUATE_MOVE --> CHECK_WIN_DRAW : ROLL of 1 is a bust, or HOLD banks turn total
+    EVALUATE_MOVE --> PLAYER_TURN : rolled 2-6, or invalid
+    EVALUATE_MOVE --> CHECK_WIN_DRAW : rolled 1, or HOLD
 
-    CHECK_WIN_DRAW --> PLAYER_TURN : no result yet, switch active player, broadcast STATE_UPDATE
-    CHECK_WIN_DRAW --> GAME_OVER : win or draw detected
+    CHECK_WIN_DRAW --> PLAYER_TURN : next player
+    CHECK_WIN_DRAW --> GAME_OVER : win or draw
 
-    GAME_OVER --> CLEANUP : broadcast GAME_OVER to remaining clients
-
-    CLEANUP --> WAITING_FOR_PLAYERS : close sockets, clear players and scores, reset for next game
+    GAME_OVER --> CLEANUP : broadcast result
+    CLEANUP --> WAITING_FOR_PLAYERS : reset for next game
 ```
+
+### Transition Details
+
+Labels in the diagram are kept short so they render cleanly on GitHub. Full trigger and action for each arrow:
+
+| From | To | Trigger | Server action |
+|---|---|---|---|
+| `INIT` | `WAITING_FOR_PLAYERS` | Socket bound to `0.0.0.0` and listening | Start accepting connections |
+| `INIT` | end | Bind fails (port in use, bad port) | Log error and exit |
+| `LOBBY_EMPTY` | `LOBBY_ONE` | Valid `CONNECT` | Assign `PLAYER_1`, send `LOBBY_WAIT` |
+| `LOBBY_ONE` | `LOBBY_EMPTY` | Player 1 sends `DISCONNECT`, EOF, or RST | Close socket, clear slot |
+| `LOBBY_ONE` | `LOBBY_ONE` | `MOVE`, bad alias, or malformed message | Send `ERROR` to sender |
+| `LOBBY_ONE` | `GAME_START` | Second valid `CONNECT` | Assign `PLAYER_2` |
+| `GAME_START` | `PLAYER_TURN` | Immediate | Reset scores, `active_player = PLAYER_1`, send `GAME_START` to each client, broadcast `STATE_UPDATE` |
+| `PLAYER_TURN` | `PLAYER_TURN` | `MOVE` from inactive player, or malformed message | Send `ERROR` to sender only; state unchanged |
+| `PLAYER_TURN` | `EVALUATE_MOVE` | `MOVE` from active player | Evaluate the action |
+| `PLAYER_TURN` | `GAME_OVER` | Either player sends `DISCONNECT`, EOF, or RST | Other player wins by `FORFEIT` |
+| `EVALUATE_MOVE` | `PLAYER_TURN` | `ROLL` of 2–6 | Add to turn total, broadcast `STATE_UPDATE`; same player continues |
+| `EVALUATE_MOVE` | `PLAYER_TURN` | Invalid action, or `HOLD` with zero turn total | Send `ERROR`; state unchanged |
+| `EVALUATE_MOVE` | `CHECK_WIN_DRAW` | `ROLL` of 1 (bust) or `HOLD` | Bust: lose turn total. Hold: bank turn total |
+| `CHECK_WIN_DRAW` | `PLAYER_TURN` | No result yet (Section 4) | Switch active player, broadcast `STATE_UPDATE` |
+| `CHECK_WIN_DRAW` | `GAME_OVER` | Win or draw (Section 4) | Build final result |
+| `GAME_OVER` | `CLEANUP` | Result built | Broadcast `GAME_OVER` to remaining clients |
+| `CLEANUP` | `WAITING_FOR_PLAYERS` | Immediate | Close sockets, clear players and scores, ready for next game |
 
 A third client that connects in any state other than `WAITING_FOR_PLAYERS` gets `ERROR LOBBY_FULL` and is closed. It never touches room state, so it isn't drawn as a transition.
 
