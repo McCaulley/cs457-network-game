@@ -10,16 +10,18 @@ This document covers how the server handles two clients at once without blocking
 
 ## 1. Concurrency Model: Multi-Threading
 
-**Choice:** Option A — `threading.Thread`, with dedicated threads per client socket.
+## 1. Concurrency Model: Multi-Threading
+ 
+The server uses `threading.Thread`. Each client socket gets two threads, a reader and a writer (Section 2).
+ 
+Why threads was choosen: 
+ 
+- **Simple code.** Each reader is a plain blocking `recv()` loop that follows blueprint §2.5. No non-blocking sockets or partial-send bookkeeping.
+- **No wasted CPU.** A waiting player's thread sleeps inside `recv()` until data arrives.
+- **Small game.** Pig has one room and two players. The server runs at most 5 threads during a game: the acceptor plus a reader and writer for each player. A third client gets a short-lived pair, receives `LOBBY_FULL`, and is closed, so it never blocks the game or the accept loop.
+- **Shared state is easy to protect.** All game state sits behind a single lock (Section 4).
 
-| | Threads (chosen) | `selectors` event loop |
-|---|---|---|
-| Receive code | Blocking `recv()` in a loop. Matches blueprint §2.5 line for line. | Non-blocking reads, partial-write tracking, register/unregister write interest. |
-| Idle player | Thread sleeps inside `recv()`; costs no CPU. | Same. |
-| Shared state | Needs a lock. | No lock needed (one thread). |
-| Scale | Fine for 2 players. Would not scale to thousands. | Scales well. |
-
-Pig has one room and two players, so scale doesn't matter. Threads keep the network code short and readable, and the one real cost — shared state — is handled by a single lock (Section 4).
+The pig game has one room and two players, so scale doesn't matter. Threads keep the network code short and readable, and the one real cost — shared state — is handled by a single lock (Section 4).
 
 ---
 
