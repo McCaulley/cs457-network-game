@@ -1,0 +1,1930 @@
+CLI Pig - Sprint 3 intermediate gameplay execution log
+======================================================
+One server and two client.py processes on localhost (127.0.0.1), full game.
+
+  python3 server.py -p 8201
+  python3 client.py -i localhost -p 8201 -a Wade
+  python3 client.py -i localhost -p 8201 -a Bob
+
+The three transcripts below are the unedited output of each process.
+Lines starting with "> " are the keys typed into that client (r = roll,
+h = hold); here they were fed in by a test script that rolls until the
+turn total reaches 15 and then holds.
+
+########## server ##########
+17:56:09 [INFO] Listening on 0.0.0.0:8201
+17:56:09 [INFO] FSM INIT -> WAITING_FOR_PLAYERS
+17:56:09 [INFO] Accepted TCP connection from 127.0.0.1:35494
+17:56:09 [INFO] 127.0.0.1:35494 joined as PLAYER_1 (alias 'Wade')
+17:56:09 [INFO] TX PLAYER_1 LOBBY_WAIT
+17:56:10 [INFO] Accepted TCP connection from 127.0.0.1:35502
+17:56:10 [INFO] FSM WAITING_FOR_PLAYERS -> GAME_START
+17:56:10 [INFO] FSM GAME_START -> PLAYER_TURN
+17:56:10 [INFO] 127.0.0.1:35502 joined as PLAYER_2 (alias 'Bob')
+17:56:10 [INFO] TX PLAYER_1 GAME_START
+17:56:10 [INFO] TX PLAYER_2 GAME_START
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 TURN_START turn_total=0 scores=0-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=2 turn_total=2 scores=0-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=5 turn_total=7 scores=0-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=5 turn_total=12 scores=0-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=2 turn_total=14 scores=0-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=2 turn_total=16 scores=0-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE HOLD
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:10 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 HELD turn_total=0 scores=16-0 active=PLAYER_2
+17:56:10 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=5 turn_total=5 scores=16-0 active=PLAYER_2
+17:56:10 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=3 turn_total=8 scores=16-0 active=PLAYER_2
+17:56:10 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=2 turn_total=10 scores=16-0 active=PLAYER_2
+17:56:10 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=2 turn_total=12 scores=16-0 active=PLAYER_2
+17:56:10 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:10 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_2 BUSTED die=1 turn_total=0 scores=16-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=5 turn_total=5 scores=16-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=2 turn_total=7 scores=16-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=2 turn_total=9 scores=16-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=5 turn_total=14 scores=16-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=6 turn_total=20 scores=16-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE HOLD
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:10 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 HELD turn_total=0 scores=36-0 active=PLAYER_2
+17:56:10 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=2 turn_total=2 scores=36-0 active=PLAYER_2
+17:56:10 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=2 turn_total=4 scores=36-0 active=PLAYER_2
+17:56:10 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:10 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_2 BUSTED die=1 turn_total=0 scores=36-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=3 turn_total=3 scores=36-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=6 turn_total=9 scores=36-0 active=PLAYER_1
+17:56:10 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:10 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_1 BUSTED die=1 turn_total=0 scores=36-0 active=PLAYER_2
+17:56:10 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=3 turn_total=3 scores=36-0 active=PLAYER_2
+17:56:10 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=6 turn_total=9 scores=36-0 active=PLAYER_2
+17:56:10 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=2 turn_total=11 scores=36-0 active=PLAYER_2
+17:56:10 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=3 turn_total=14 scores=36-0 active=PLAYER_2
+17:56:10 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=6 turn_total=20 scores=36-0 active=PLAYER_2
+17:56:10 [INFO] RX PLAYER_2 MOVE HOLD
+17:56:10 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:10 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:10 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:10 [INFO] TX ALL STATE_UPDATE PLAYER_2 HELD turn_total=0 scores=36-20 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=4 turn_total=4 scores=36-20 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:11 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 BUSTED die=1 turn_total=0 scores=36-20 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=4 turn_total=4 scores=36-20 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=5 turn_total=9 scores=36-20 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=6 turn_total=15 scores=36-20 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE HOLD
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:11 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 HELD turn_total=0 scores=36-35 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:11 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 BUSTED die=1 turn_total=0 scores=36-35 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=4 turn_total=4 scores=36-35 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=6 turn_total=10 scores=36-35 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:11 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 BUSTED die=1 turn_total=0 scores=36-35 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=2 turn_total=2 scores=36-35 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:11 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 BUSTED die=1 turn_total=0 scores=36-35 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=2 turn_total=2 scores=36-35 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=3 turn_total=5 scores=36-35 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=5 turn_total=10 scores=36-35 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=3 turn_total=13 scores=36-35 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=3 turn_total=16 scores=36-35 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE HOLD
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:11 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 HELD turn_total=0 scores=36-51 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=2 turn_total=2 scores=36-51 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=4 turn_total=6 scores=36-51 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:11 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 BUSTED die=1 turn_total=0 scores=36-51 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=2 turn_total=2 scores=36-51 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=4 turn_total=6 scores=36-51 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=2 turn_total=8 scores=36-51 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=5 turn_total=13 scores=36-51 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=3 turn_total=16 scores=36-51 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE HOLD
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:11 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 HELD turn_total=0 scores=36-67 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=6 turn_total=6 scores=36-67 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:11 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 BUSTED die=1 turn_total=0 scores=36-67 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=2 turn_total=2 scores=36-67 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=3 turn_total=5 scores=36-67 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=6 turn_total=11 scores=36-67 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=5 turn_total=16 scores=36-67 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE HOLD
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:11 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 HELD turn_total=0 scores=36-83 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=5 turn_total=5 scores=36-83 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=5 turn_total=10 scores=36-83 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=2 turn_total=12 scores=36-83 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=2 turn_total=14 scores=36-83 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 ROLLED die=4 turn_total=18 scores=36-83 active=PLAYER_1
+17:56:11 [INFO] RX PLAYER_1 MOVE HOLD
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:11 [INFO] FSM CHECK_WIN_DRAW -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_1 HELD turn_total=0 scores=54-83 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=3 turn_total=3 scores=54-83 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=5 turn_total=8 scores=54-83 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=6 turn_total=14 scores=54-83 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE ROLL
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> PLAYER_TURN
+17:56:11 [INFO] TX ALL STATE_UPDATE PLAYER_2 ROLLED die=5 turn_total=19 scores=54-83 active=PLAYER_2
+17:56:11 [INFO] RX PLAYER_2 MOVE HOLD
+17:56:11 [INFO] FSM PLAYER_TURN -> EVALUATE_MOVE
+17:56:11 [INFO] FSM EVALUATE_MOVE -> CHECK_WIN_DRAW
+17:56:11 [INFO] FSM CHECK_WIN_DRAW -> GAME_OVER
+17:56:11 [INFO] FSM GAME_OVER -> CLEANUP
+17:56:11 [INFO] TX ALL GAME_OVER WIN winner=PLAYER_2 (PLAYER_2 reached 100)
+17:56:11 [INFO] FSM CLEANUP -> WAITING_FOR_PLAYERS
+
+########## Wade ##########
+Connected to localhost (127.0.0.1) port 8201.
+Joined as Wade. Waiting for Player 2...
+(type 'quit' to leave)
+
+Game on! You are PLAYER_1 (Wade) against Bob.
+First to bank 100 wins. Rolling a 1 loses your turn total.
+
+==============================================
+ PIG  |  first to 100  |  Wade starts.
+----------------------------------------------
+ -> Wade (you)                 0
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade (you)                 0
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 2
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 5.
+----------------------------------------------
+ -> Wade (you)                 0
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 7
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 5.
+----------------------------------------------
+ -> Wade (you)                 0
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 12
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade (you)                 0
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 14
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade (you)                 0
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 16
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> h
+
+==============================================
+ PIG  |  first to 100  |  Wade held and banked 16.
+----------------------------------------------
+    Wade (you)                16
+ -> Bob                        0
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 5.
+----------------------------------------------
+    Wade (you)                16
+ -> Bob                        0
+----------------------------------------------
+ Turn total (Bob): 5
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade (you)                16
+ -> Bob                        0
+----------------------------------------------
+ Turn total (Bob): 8
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade (you)                16
+ -> Bob                        0
+----------------------------------------------
+ Turn total (Bob): 10
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade (you)                16
+ -> Bob                        0
+----------------------------------------------
+ Turn total (Bob): 12
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+ -> Wade (you)                16
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 5.
+----------------------------------------------
+ -> Wade (you)                16
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 5
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade (you)                16
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 7
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade (you)                16
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 9
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 5.
+----------------------------------------------
+ -> Wade (you)                16
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 14
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 6.
+----------------------------------------------
+ -> Wade (you)                16
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 20
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> h
+
+==============================================
+ PIG  |  first to 100  |  Wade held and banked 20.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                        0
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                        0
+----------------------------------------------
+ Turn total (Bob): 2
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                        0
+----------------------------------------------
+ Turn total (Bob): 4
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 3.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 3
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 6.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                        0
+----------------------------------------------
+ Turn total (Wade): 9
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                        0
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                        0
+----------------------------------------------
+ Turn total (Bob): 3
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 6.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                        0
+----------------------------------------------
+ Turn total (Bob): 9
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                        0
+----------------------------------------------
+ Turn total (Bob): 11
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                        0
+----------------------------------------------
+ Turn total (Bob): 14
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 6.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                        0
+----------------------------------------------
+ Turn total (Bob): 20
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob held and banked 20.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       20
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 4.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       20
+----------------------------------------------
+ Turn total (Wade): 4
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       20
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 4.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       20
+----------------------------------------------
+ Turn total (Bob): 4
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 5.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       20
+----------------------------------------------
+ Turn total (Bob): 9
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 6.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       20
+----------------------------------------------
+ Turn total (Bob): 15
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob held and banked 15.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       35
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       35
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 4.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       35
+----------------------------------------------
+ Turn total (Bob): 4
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 6.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       35
+----------------------------------------------
+ Turn total (Bob): 10
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       35
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       35
+----------------------------------------------
+ Turn total (Wade): 2
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       35
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       35
+----------------------------------------------
+ Turn total (Bob): 2
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       35
+----------------------------------------------
+ Turn total (Bob): 5
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 5.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       35
+----------------------------------------------
+ Turn total (Bob): 10
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       35
+----------------------------------------------
+ Turn total (Bob): 13
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       35
+----------------------------------------------
+ Turn total (Bob): 16
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob held and banked 16.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       51
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       51
+----------------------------------------------
+ Turn total (Wade): 2
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 4.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       51
+----------------------------------------------
+ Turn total (Wade): 6
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       51
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       51
+----------------------------------------------
+ Turn total (Bob): 2
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 4.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       51
+----------------------------------------------
+ Turn total (Bob): 6
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       51
+----------------------------------------------
+ Turn total (Bob): 8
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 5.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       51
+----------------------------------------------
+ Turn total (Bob): 13
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       51
+----------------------------------------------
+ Turn total (Bob): 16
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob held and banked 16.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       67
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 6.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       67
+----------------------------------------------
+ Turn total (Wade): 6
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       67
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       67
+----------------------------------------------
+ Turn total (Bob): 2
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       67
+----------------------------------------------
+ Turn total (Bob): 5
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 6.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       67
+----------------------------------------------
+ Turn total (Bob): 11
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 5.
+----------------------------------------------
+    Wade (you)                36
+ -> Bob                       67
+----------------------------------------------
+ Turn total (Bob): 16
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob held and banked 16.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       83
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 5.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       83
+----------------------------------------------
+ Turn total (Wade): 5
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 5.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       83
+----------------------------------------------
+ Turn total (Wade): 10
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       83
+----------------------------------------------
+ Turn total (Wade): 12
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       83
+----------------------------------------------
+ Turn total (Wade): 14
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 4.
+----------------------------------------------
+ -> Wade (you)                36
+    Bob                       83
+----------------------------------------------
+ Turn total (Wade): 18
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> h
+
+==============================================
+ PIG  |  first to 100  |  Wade held and banked 18.
+----------------------------------------------
+    Wade (you)                54
+ -> Bob                       83
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade (you)                54
+ -> Bob                       83
+----------------------------------------------
+ Turn total (Bob): 3
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 5.
+----------------------------------------------
+    Wade (you)                54
+ -> Bob                       83
+----------------------------------------------
+ Turn total (Bob): 8
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 6.
+----------------------------------------------
+    Wade (you)                54
+ -> Bob                       83
+----------------------------------------------
+ Turn total (Bob): 14
+==============================================
+Waiting for Bob...
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 5.
+----------------------------------------------
+    Wade (you)                54
+ -> Bob                       83
+----------------------------------------------
+ Turn total (Bob): 19
+==============================================
+Waiting for Bob...
+
+==============================================
+ GAME OVER
+----------------------------------------------
+    Wade (you)                54
+    Bob                      102
+----------------------------------------------
+ Bob wins.
+ (WIN: PLAYER_2 reached 100)
+==============================================
+
+########## Bob ##########
+Connected to localhost (127.0.0.1) port 8201.
+
+Game on! You are PLAYER_2 (Bob) against Wade.
+First to bank 100 wins. Rolling a 1 loses your turn total.
+
+==============================================
+ PIG  |  first to 100  |  Wade starts.
+----------------------------------------------
+ -> Wade                       0
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade                       0
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 2
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 5.
+----------------------------------------------
+ -> Wade                       0
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 7
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 5.
+----------------------------------------------
+ -> Wade                       0
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 12
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade                       0
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 14
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade                       0
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 16
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade held and banked 16.
+----------------------------------------------
+    Wade                      16
+ -> Bob (you)                  0
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 5.
+----------------------------------------------
+    Wade                      16
+ -> Bob (you)                  0
+----------------------------------------------
+ Turn total (Bob): 5
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade                      16
+ -> Bob (you)                  0
+----------------------------------------------
+ Turn total (Bob): 8
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade                      16
+ -> Bob (you)                  0
+----------------------------------------------
+ Turn total (Bob): 10
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade                      16
+ -> Bob (you)                  0
+----------------------------------------------
+ Turn total (Bob): 12
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+ -> Wade                      16
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 5.
+----------------------------------------------
+ -> Wade                      16
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 5
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade                      16
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 7
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade                      16
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 9
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 5.
+----------------------------------------------
+ -> Wade                      16
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 14
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 6.
+----------------------------------------------
+ -> Wade                      16
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 20
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade held and banked 20.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                  0
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                  0
+----------------------------------------------
+ Turn total (Bob): 2
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                  0
+----------------------------------------------
+ Turn total (Bob): 4
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 3.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 3
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 6.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                  0
+----------------------------------------------
+ Turn total (Wade): 9
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                  0
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                  0
+----------------------------------------------
+ Turn total (Bob): 3
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 6.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                  0
+----------------------------------------------
+ Turn total (Bob): 9
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                  0
+----------------------------------------------
+ Turn total (Bob): 11
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                  0
+----------------------------------------------
+ Turn total (Bob): 14
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 6.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                  0
+----------------------------------------------
+ Turn total (Bob): 20
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> h
+
+==============================================
+ PIG  |  first to 100  |  Bob held and banked 20.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 20
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 4.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 20
+----------------------------------------------
+ Turn total (Wade): 4
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 20
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 4.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 20
+----------------------------------------------
+ Turn total (Bob): 4
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 5.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 20
+----------------------------------------------
+ Turn total (Bob): 9
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 6.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 20
+----------------------------------------------
+ Turn total (Bob): 15
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> h
+
+==============================================
+ PIG  |  first to 100  |  Bob held and banked 15.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 35
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 35
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 4.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 35
+----------------------------------------------
+ Turn total (Bob): 4
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 6.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 35
+----------------------------------------------
+ Turn total (Bob): 10
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 35
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 35
+----------------------------------------------
+ Turn total (Wade): 2
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 35
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 35
+----------------------------------------------
+ Turn total (Bob): 2
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 35
+----------------------------------------------
+ Turn total (Bob): 5
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 5.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 35
+----------------------------------------------
+ Turn total (Bob): 10
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 35
+----------------------------------------------
+ Turn total (Bob): 13
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 35
+----------------------------------------------
+ Turn total (Bob): 16
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> h
+
+==============================================
+ PIG  |  first to 100  |  Bob held and banked 16.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 51
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 51
+----------------------------------------------
+ Turn total (Wade): 2
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 4.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 51
+----------------------------------------------
+ Turn total (Wade): 6
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 51
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 51
+----------------------------------------------
+ Turn total (Bob): 2
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 4.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 51
+----------------------------------------------
+ Turn total (Bob): 6
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 51
+----------------------------------------------
+ Turn total (Bob): 8
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 5.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 51
+----------------------------------------------
+ Turn total (Bob): 13
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 51
+----------------------------------------------
+ Turn total (Bob): 16
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> h
+
+==============================================
+ PIG  |  first to 100  |  Bob held and banked 16.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 67
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 6.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 67
+----------------------------------------------
+ Turn total (Wade): 6
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 1 and BUSTED. Turn total lost.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 67
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 2.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 67
+----------------------------------------------
+ Turn total (Bob): 2
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 67
+----------------------------------------------
+ Turn total (Bob): 5
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 6.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 67
+----------------------------------------------
+ Turn total (Bob): 11
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 5.
+----------------------------------------------
+    Wade                      36
+ -> Bob (you)                 67
+----------------------------------------------
+ Turn total (Bob): 16
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> h
+
+==============================================
+ PIG  |  first to 100  |  Bob held and banked 16.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 83
+----------------------------------------------
+ Turn total (Wade): 0
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 5.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 83
+----------------------------------------------
+ Turn total (Wade): 5
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 5.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 83
+----------------------------------------------
+ Turn total (Wade): 10
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 83
+----------------------------------------------
+ Turn total (Wade): 12
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 2.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 83
+----------------------------------------------
+ Turn total (Wade): 14
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade rolled a 4.
+----------------------------------------------
+ -> Wade                      36
+    Bob (you)                 83
+----------------------------------------------
+ Turn total (Wade): 18
+==============================================
+Waiting for Wade...
+
+==============================================
+ PIG  |  first to 100  |  Wade held and banked 18.
+----------------------------------------------
+    Wade                      54
+ -> Bob (you)                 83
+----------------------------------------------
+ Turn total (Bob): 0
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 3.
+----------------------------------------------
+    Wade                      54
+ -> Bob (you)                 83
+----------------------------------------------
+ Turn total (Bob): 3
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 5.
+----------------------------------------------
+    Wade                      54
+ -> Bob (you)                 83
+----------------------------------------------
+ Turn total (Bob): 8
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 6.
+----------------------------------------------
+    Wade                      54
+ -> Bob (you)                 83
+----------------------------------------------
+ Turn total (Bob): 14
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> r
+
+==============================================
+ PIG  |  first to 100  |  Bob rolled a 5.
+----------------------------------------------
+    Wade                      54
+ -> Bob (you)                 83
+----------------------------------------------
+ Turn total (Bob): 19
+==============================================
+*** Your Turn ***  [R]oll or [H]old? 
+> h
+
+==============================================
+ GAME OVER
+----------------------------------------------
+    Wade                      54
+    Bob (you)                102
+----------------------------------------------
+ You win!
+ (WIN: PLAYER_2 reached 100)
+==============================================
